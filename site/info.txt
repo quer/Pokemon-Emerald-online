@@ -1,0 +1,29 @@
+##################
+made by quer - www.quers.net
+##################
+# to add new map to game
+1. index.html add js file.
+
+
+# pre npc data
+"name": "the Master",
+"movment": {
+	"type": "standing",
+	"radius": 4,
+	"start": {
+		"x": 23,
+		"y": 39,
+		"looking": 0
+	}
+},
+"image":{
+	"x": 1,
+	"y": 0
+},
+"map": "fullMap",
+"text": [
+	"i'm the master over them all!",
+	"fear me!!!",
+	"feeeeeeeeeeeeeaaaaaaaaaar me!!!",
+	"Now!!!"
+]

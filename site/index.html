@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Pokemon Emerald</title>
+	<link rel="stylesheet" type="text/css" href="site/css.css" />
+</head>
+<body>
+	<style type="text/css">
+	canvas{
+		border: 1px solid white;
+		display: none;
+	}
+	#login{
+		display: none;
+	}
+	</style>
+	<img id="fullSheet" src="site/image/fullSheetAnimation.png" />
+	<img id="characters" src="site/image/characters.png" />
+	<img id="text" src="site/image/text.png" />
+	<div id="login">
+		<input id="iLogin" type="text">
+		<button id="bLogin">login</button>
+	</div>
+	<div id="realm">
+
+	</div>
+	<canvas id="game" width="700" height="500"></canvas>
+	<!-- the socket -->
+	<script src="/socket.io/socket.io.js"></script>
+	<!-- the map -->
+	<script src="/map/store.js"></script>
+	<script src="/map/pokaHeal.js"></script>
+	<script src="/map/pokaHeal_02.js"></script>
+	<script src="/map/fullMap.js"></script>
+	<script src="/map/mine_01.js"></script>
+	<script src="/map/gym_01.js"></script>
+	<!-- static -->
+	<script src="site/Model/Tile.js"></script>
+	<script src="site/Model/Window.js"></script>
+	<!--<script src="site/NpcData.js"></script>
+	<script src="site/Model/Collision.js"></script>-->
+	<script src="site/jquery-2.1.4.min.js"></script>
+	<!-- the game engien -->
+	<script src="site/Model/map.js"></script>
+	<script src="site/Model/Rooms.js"></script>
+	<script src="site/Model/World.js"></script>
+	<script src="site/Model/camera.js"></script>
+	<script src="site/Model/playerContainer.js"></script>
+	<script src="site/Model/Text.js"></script>
+	<script src="site/Control/game.js"></script>
+	<script src="site/Control/socket.js"></script>
+
+</body>
+</html>
