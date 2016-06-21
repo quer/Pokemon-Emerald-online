@@ -123,7 +123,7 @@ module.exports = function (data, ownSocket) {
     }
     this.eventOnBlock = function (x, y,RealmContainer) {
     	var tileData = this.eventLooking(x, y);
-    	console.log(tileData);
+    	//console.log(tileData);
     	if (tileData != false && tileData.type == "warp") {
     		this.x = tileData.data.x; 
     		this.y = tileData.data.y;
@@ -131,7 +131,7 @@ module.exports = function (data, ownSocket) {
     	}else if (tileData != false && tileData.type == "teleport") {
             console.log("do eventOnBlock tele");
             var map = tileData.data;
-            console.log(tileData);
+            //console.log(tileData);
             var oldWorld = this.world;
             this.world = map.map;
             if(map.poss == null){
@@ -142,7 +142,7 @@ module.exports = function (data, ownSocket) {
                 this.x = map.poss.x;
                 this.y = map.poss.y;
             }
-            console.log("x:"+ this.x + " y:"+ this.y + " world: "+ this.world );
+            //console.log("x:"+ this.x + " y:"+ this.y + " world: "+ this.world );
             var realm = RealmContainer.find(this.realm);
 			if (realm != null) {
 				console.log("teleport");
@@ -183,5 +183,11 @@ module.exports = function (data, ownSocket) {
     	}else{
     		return false;
     	}
+    } 
+    this.update = function (updateWorld) {
+        if (this.timeLastMoving+1500 < new Date().getTime()) {
+            this.moveImage(true);
+            updateWorld(this.ownSocket);
+        };
     }
 }

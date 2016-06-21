@@ -1,6 +1,6 @@
 var NpcContainer = require("./npcContainer");
 var npc = require("./npc");
-//var db = require("./../Database/database");
+var db = require("./../Database/database");
 
 module.exports = function (data) {
 	console.log("build: " + data.layers[0].name);
@@ -30,7 +30,7 @@ module.exports = function (data) {
 		};
 	};
 	this.data = endArray;
-	/*var that = this;
+	var that = this;
 	db.query("SELECT * FROM npc WHERE map = \""+this.name+"\"", function(npcs){
 		console.log("start load npc");
 		for (var i = 0; i < npcs.length; i++) {
@@ -39,8 +39,8 @@ module.exports = function (data) {
 			that.npcContainer.push(newNpc);
 		};
 		console.log("npc loaded!");
-	});*/
-	
+	});
+
 	this.addPlayer = function (playerObj) {
 		this.playerContainer.push(playerObj);
 	}
@@ -54,4 +54,5 @@ module.exports = function (data) {
 	this.eventReturn = function (x, y) {
 		return this.data[x][y];
 	}
+
 }

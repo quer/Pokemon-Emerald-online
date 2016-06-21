@@ -30,6 +30,9 @@ app.get('/', function (req, res) {
 	res.sendfile(__dirname + '/site/index.html');
 });
 var PlayerContainer = require("./Model/playerContainer");
+//var NpcContainer = require("./Model/npcContainer");
+var PokeTypes = require("./pokemon/TypeContainer");
+PokeTypes.load();
 //preload realms
 database.query("SELECT * FROM realm", function(realms){
 	for (var i = 0; i < realms.length; i++) {
@@ -38,6 +41,7 @@ database.query("SELECT * FROM realm", function(realms){
 	};
 	startGame();
 });
+
 // done load servers
 io.sockets.on('connection', function (socket) {
 	console.log("New connection");
@@ -73,6 +77,7 @@ io.sockets.on('connection', function (socket) {
 		if (PlayerContainer.remove(socket.player, RealmContainer)) {
 			updateWorld(toUpdateWorld);
 		};
+		console.log("player dc");
 	});
 	socket.on('doKey', function(key){
 		//console.log(key);
@@ -111,8 +116,17 @@ function updateWorld (playerObj) {
 	var data = PlayerContainer.buildPlayerToClient(playerObj, RealmContainer);
 	//console.log(data.users);
 	for (var i = 0; i < data.users.length; i++) {
-		console.log("update: "+data.users[i].world);
+		console.log("update: "+data.users[i].world + "   - "+ data.users[i].realm);
 		data.users[i].ownSocket.emit('gameUpdate', {"users" : data.buildUsers, "camera": {"x": data.users[i].x, "y": data.users[i].y}, "world": data.users[i].world});
+	};
+}
+function updateNpc (realm, world, npc) {
+	var placeObj = { "realm": realm.id, "world": world.name };
+	//console.log(placeObj);
+	var data = PlayerContainer.buildPlayerToClient(placeObj, RealmContainer);
+	//console.log(data);
+	for (var i = 0; i < data.users.length; i++) {
+		data.users[i].ownSocket.emit('gameNpcUpdate', npc);
 	};
 }
 function movePlayer (delta) {
@@ -135,6 +149,24 @@ function movePlayer (delta) {
 		}
 	}
 }
+function NpcUpdate (delta) {
+	if ((delta % 60) === 0) {
+		for (var i = 0; i < RealmContainer.container.length; i++) {
+			var realms = RealmContainer.container[i];
+			for (var ii = 0; ii < realms.world.length; ii++) {
+				var world = realms.world[ii];
+				for (var iii = 0; iii < world.npcContainer.length; iii++) {
+					var npc = world.npcContainer[iii];
+					if (npc.canMove && npc.movment.type != "standing"){
+						npc.findTile(world);
+					}
+				};
+				updateNpc(realms, world, world.npcContainer);
+			};
+		};
+		console.log("npc moved!");
+	}
+}
 function startGame () {
     if (gameLoop == null) {
         gameLoop = setInterval(mainloop, fps);
@@ -143,7 +175,9 @@ function startGame () {
 }
 var mainloop = function() {
 	delta++;
+	NpcUpdate(delta);
 	movePlayer(delta);
+
 };
 function stopGame () {
 	   	console.log("stopGame");

@@ -24,7 +24,7 @@ module.exports = {
 			if (world != null) {
 				//console.log(world);
 				var users = world.playerContainer;
-				console.log(users);
+				//console.log(users);
 				var buildUsers = [];
 				for (var i = 0; i < users.length; i++) {
 					buildUsers.push(users[i].build());

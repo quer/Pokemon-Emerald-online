@@ -6,6 +6,7 @@ module.exports = function (name, type, id) {
 	this.type = type;
 	this.id = id;
 	this.world = [];
+	console.log("mapContainer:"+MapContainer.container.length);
 	for (var i = 0; i < MapContainer.container.length; i++) {
 		this.world.push(new World(MapContainer.container[i]));
 	}

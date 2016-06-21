@@ -3,6 +3,7 @@ var	ctx = can.getContext('2d');
 
 var game = {
     playerData: {},
+    world: "",
     started: false,
     text: null,
 	load: function (can, ctx) {
@@ -22,6 +23,11 @@ var game = {
             startGame();
             this.started = true;
         }
+        // to reset npc. so they not in new map
+        if (this.world != playerData.world) {
+            this.world = playerData.world;
+            npcContainer.load([]);
+        };
         console.log("game update!");
         this.playerData = playerData;
         playerContainer.load(playerData.users)
@@ -29,6 +35,11 @@ var game = {
         Camera.heroXOffset = playerData.camera.x;
         Camera.heroYOffset = playerData.camera.y;
         Camera.load();
+    },
+    npcUpdate: function (npcData) {
+        console.log(npcData);
+        npcContainer.load(npcData);
+        //stopGame();
     },
 	render: function (ctx) {
         var start = Date.now();
@@ -41,6 +52,7 @@ var game = {
 
 			World.render(ctx, 0 + Camera.worldXOffset, 0 + Camera.worldYOffset , 0);
             playerContainer.render(ctx);
+            npcContainer.render(ctx);
             //the top of building and the map
             World.render(ctx, 0 + Camera.worldXOffset, 0 + Camera.worldYOffset , 1);
 

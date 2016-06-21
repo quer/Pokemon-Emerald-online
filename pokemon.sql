@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `npc` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 INSERT INTO `npc` (`id`, `name`, `movment_type`, `movment_radius`, `movment_start_x`, `movment_start_y`, `movment_start_looking`, `image_x`, `image_y`, `map`) VALUES
-(1, 'lasse', 'moving', 2, 20, 21, 0, 0, 0, 'fullMap'),
-(2, 'the Master', 'moving', 4, 23, 39, 0, 1, 0, 'fullMap'),
-(3, 'fie', 'moving', 4, 64, 13, 0, 2, 0, 'fullMap'),
-(4, 'pokemon center', 'standing', 0, 7, 2, 0, 3, 0, 'pokaHeal');
+(1, 'lasse', 'moving', 2, 20, 21, 0, 1, 0, 'fullMap'),
+(2, 'the Master', 'moving', 4, 23, 39, 0, 2, 0, 'fullMap'),
+(3, 'fie', 'moving', 4, 64, 13, 0, 3, 0, 'fullMap'),
+(4, 'pokemon center', 'standing', 0, 7, 2, 0, 4, 0, 'pokaHeal');
 
 CREATE TABLE IF NOT EXISTS `npc_text` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

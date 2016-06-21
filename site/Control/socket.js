@@ -39,9 +39,13 @@ socket.on('gameUpdate', function(data) {
   game.update(data);
   console.log(data);
 });
-socket.on('loadText' function (data) {
-  game.loadText(data);
+socket.on('gameNpcUpdate', function(data) {
+  game.npcUpdate(data);
+  console.log("npc");
 })
+socket.on('loadText', function (data) {
+  game.loadText(data);
+});
 var key = {
   "left": false,
   "right": false,
