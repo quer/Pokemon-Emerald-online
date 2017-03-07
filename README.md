@@ -7,8 +7,6 @@ you need ```nodejs``` installed on the pc
 
 and then ```npm install``` to get all node modules that is needed
 
-and then ```npm install``` to get all node modules that is needed
-
 and then just import the database, and edit the database file!
 
 and then ```node main.js``` and it shoud be up and runing
@@ -43,3 +41,6 @@ and then ```http://localhost:3000``` and you are setup
   * collision detaction
 
 and more..
+
+#webside
+the web site attached to the reopsitory, is for the sinkel player version, that is in a other reopsitory, that i have.
